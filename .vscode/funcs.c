@@ -10,25 +10,56 @@ int FileExists(const char *path) {
 }
 
 int ReadConfigs(const char *path, char *uname, char *email) {
+    FILE *file = fopen(path, "r");
+    if (file == NULL) {
+        perror("Failed to open file");
+        exit(EXIT_FAILURE);
+    }
+
     // Read the first line
-    if (fgets(uname, 40, path) == NULL) {
+    if (fgets(uname, 40, file) == NULL) {
         printf("Error reading username\n");
-        fclose(path);
-        exit(IO_ERROR);
+        fclose(file);
+        exit(5);
     }
 
     // Read the second line
-    if (fgets(email, 255, path) == NULL) {
+    if (fgets(email, 255, file) == NULL) {
         perror("Error reading email\n");
-        fclose(path);
-        exit(IO_ERROR);
+        fclose(file);
+        exit(5);
     }
 
-    fclose(path);
+    fclose(file);
     return 1;
 }
 
-int ExecuteCommand(const char *cmd, const char *output) {
+
+int StringLen(const char *str) {
+    int len = 0;
+    while (*str) {
+        len++;
+        str++;
+    }
+    return len;
+}
+
+int StringCat(char *str1, const char *str2) {
+    while (*str1) {
+        str1++;
+    }
+
+    while (*str2) {
+        *str1 = *str2;
+        str1++;
+        str2++;
+    }
+
+    *str1 = '\0';
+    return 1;
+}
+
+int ExecuteCommand(const char *cmd, char *output) {
     FILE *fp;
     char buffer[512];
 
@@ -36,19 +67,20 @@ int ExecuteCommand(const char *cmd, const char *output) {
     fp = popen(cmd, "r");
     if (fp == NULL) {
         perror("Failed to run command");
-        exit(EXIT_FAILURE);
+        exit(4);
     }
 
     // Read the output a line at a time - output it
     while (fgets(buffer, sizeof(buffer), fp) != NULL) {
-        strcat(output, buffer);
+        StringCat(output, buffer);
     }
 
     // Close the pipe
     if (pclose(fp) == -1) {
         perror("Failed to close command stream");
-        exit(EXIT_FAILURE);
+        exit(4);
     }
+    return 1;
 }
 
 int CompareStrings(const char *str1, const char *str2) {
@@ -67,8 +99,6 @@ int CompareStrings(const char *str1, const char *str2) {
 
 int GitInit() {
     if (FileExists("user.txt")) {
-        FILE *file = fopen("user.txt", "r");
-
         // Max length of a GitHub username is 39 chars
         char uname[40];
         char cuname[40];
@@ -77,7 +107,7 @@ int GitInit() {
         char email[255];
         char cemail[255];
 
-        ReadConfigs(file, uname, email);
+        ReadConfigs("user.txt", uname, email);
 
         ExecuteCommand("git config user.name", cuname);
         ExecuteCommand("git config user.email", cemail);
@@ -100,16 +130,20 @@ int GitInit() {
 int Commit(int cnt) {
     system("git add .");
     system("git commit -m \"Update nr. %d\"", cnt);
+    return 1;
 }
 
 int Push() {
     system("git push");
+    return 1;
 }
 
 int Pull() {
     system("git pull");
+    return 1;
 }
 
 int Fetch() {
     system("git fetch");
+    return 1;
 }

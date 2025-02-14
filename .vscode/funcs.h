@@ -8,9 +8,13 @@ int FileExists(const char *path);
 
 int ReadConfigs(const char *path, char *uname, char *email);
 
-int ExecuteCommand(const char *cmd, const char *output);
+int ExecuteCommand(const char *cmd, char *output);
 
 int CompareStrings(const char *str1, const char *str2);
+
+int StringLen(const char *str);
+
+int StringCat(char *str1, const char *str2);
 
 int GitInit();
 
