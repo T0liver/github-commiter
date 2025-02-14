@@ -25,5 +25,8 @@ int main() {
             return 5;
         }
     }
+
+    // Incrementing counter
+    counter++;
     return 0;
 }
