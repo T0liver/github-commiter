@@ -105,3 +105,11 @@ int Commit(int cnt) {
 int Push() {
     system("git push");
 }
+
+int Pull() {
+    system("git pull");
+}
+
+int Fetch() {
+    system("git fetch");
+}

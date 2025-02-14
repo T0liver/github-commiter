@@ -28,5 +28,28 @@ int main() {
 
     // Incrementing counter
     counter++;
+    FILE *file = fopen("commit.txt", "w");
+    if (file) {
+        fprintf(file, "%d\n", counter);
+        fclose(file);
+    } else {
+        printf("Error creating file\nExiting...\n");
+        return 5;
+    }
+
+    if (!GitInit()) {
+        printf("Git init failed!\n");
+        return 22;
+    }
+
+    if (!Pull() || !Fetch()) {
+        printf("fetch & pull failed!\n");
+        return 113;
+    }
+
+    if (!Commit(counter)) {
+        printf("Commit failed!\n");
+        return 5;
+    }
     return 0;
 }

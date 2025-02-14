@@ -18,4 +18,8 @@ int Commit(int cnt);
 
 int Push();
 
+int Pull();
+
+int Fetch();
+
 #endif
