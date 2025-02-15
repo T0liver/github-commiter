@@ -19,6 +19,6 @@ This should work with this flag: `-m32` but no.
 
 Just won't work, and I can't find the requied libraries online :c
 
-If anyone can help me pls drop a message [oliver@toliver.hu](mailto:oliver@toliver.hu)
+If anyone can help me pls drop an e-mail to `oliver[monkey]toliver.hu`
 
 Thank youu!
