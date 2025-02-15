@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": true,
       "cwd": "m:/Programs/github-commiter/src",
-      "program": "m:/Programs/github-commiter/src/build/Debug/outDebug",
+      "program": "m:/Programs/github-commiter/src/build/Release/outRelease",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
