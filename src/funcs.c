@@ -1,4 +1,4 @@
-#include "funcs.h"
+#include "..\include\funcs.h"
 
 int FileExists(const char *path) {
     FILE *file = fopen(path, "r");

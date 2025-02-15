@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "funcs.h"
+#include "..\include\funcs.h"
 
 int main() {
     int counter;
