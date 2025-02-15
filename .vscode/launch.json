@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "m:/Programs/github-commiter",
-      "program": "m:/Programs/github-commiter/build/Debug/outDebug",
+      "cwd": "m:/Programs/github-commiter/src",
+      "program": "m:/Programs/github-commiter/src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

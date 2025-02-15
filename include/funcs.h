@@ -12,8 +12,6 @@ int ExecuteCommand(const char *cmd, char *output);
 
 int CompareStrings(const char *str1, const char *str2);
 
-int StringLen(const char *str);
-
 int StringCat(char *str1, const char *str2);
 
 int GitInit();

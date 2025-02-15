@@ -42,7 +42,7 @@ int main() {
         return 22;
     }
 
-    if (!Pull() || !Fetch()) {
+    if (!Fetch() || !Pull()) {
         printf("fetch & pull failed!\n");
         return 113;
     }
@@ -50,6 +50,10 @@ int main() {
     if (!Commit(counter)) {
         printf("Commit failed!\n");
         return 5;
+    }
+    if (!Push()) {
+        printf("Push failed!\n");
+        return 112;
     }
     return 0;
 }

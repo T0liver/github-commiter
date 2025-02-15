@@ -34,16 +34,6 @@ int ReadConfigs(const char *path, char *uname, char *email) {
     return 1;
 }
 
-
-int StringLen(const char *str) {
-    int len = 0;
-    while (*str) {
-        len++;
-        str++;
-    }
-    return len;
-}
-
 int StringCat(char *str1, const char *str2) {
     while (*str1) {
         str1++;
@@ -129,6 +119,11 @@ int GitInit() {
         return 1;
     } else {
         printf("user.txt file does not exist\nPlease fill it out first!...\n");
+        FILE *file = fopen("user.txt", "w");
+        if (file) {
+            fprintf(file, "YourUsername\nYourEmail");
+        }
+        fclose(file);
         return 0;
     }
 }
