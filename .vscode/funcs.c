@@ -116,8 +116,14 @@ int GitInit() {
             printf("User configs are all set\n");
         } else {
             printf("User configs are not set\nSetting them up...\n");
-            system("git config user.name \"%s\"", uname);
-            system("git config user.email \"%s\"", email);
+            // cmd 23 chars + 39 chars for the username
+            char cmdu[63];
+            sprintf(cmdu, "git config user.name \"%s\"", uname);
+            system(cmdu);
+            // cmd 24 chars + 254 chars for the email
+            char cmde[279];
+            sprintf(cmde, "git config user.email \"%s\"", email);
+            system(cmde);
         }
 
         return 1;
@@ -129,7 +135,10 @@ int GitInit() {
 
 int Commit(int cnt) {
     system("git add .");
-    system("git commit -m \"Update nr. %d\"", cnt);
+    // cmd 28 chars + 10 chars for the number
+    char cmd[38];
+    sprintf(cmd, "git commit -m \"Update nr. %d\"", cnt);
+    system(cmd);
     return 1;
 }
 
